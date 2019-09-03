@@ -82,7 +82,11 @@ void reverse(Stack **s) {
         it = cp.next;
     }
 
+    // Inverte a ordem dos elementos da pilha passada por parametro.
+    // O que é feito aqui é fazer com que s aponte para aux. Se aux for liberado, nao havera nada na pilha
     *s = aux;
+    // Libera memoria
+    free(it);
 }
 
 int main() {
@@ -91,6 +95,17 @@ int main() {
     push(2, s);
     push(3, s);
     push(4, s);
+    push(5, s);
+    push(6, s);
+    push(7, s);
+    push(8, s);
+    push(9, s);
+
+    printf("Imprimindo a pilha no estado atual..\n");
+    printStack(s);
+
+    printf("Pressione enter para inverter e imprimir a pilha..");
+    getchar();
 
     reverse(&s);
     printStack(s);

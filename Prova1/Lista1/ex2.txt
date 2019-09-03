@@ -1,0 +1,17 @@
+O que será impresso na tela após a execução do código abaixo? Considere que tanto a pilha quanto a fila começam vazias, que as funções push e pop inserem e retiram da pilha respectivamente, e que as funções inserir e remover inserem e retiram da fila respectivamente.
+
+    push(&pilha, 10);
+    inserir(&fila, 20);
+    push(&pilha, 30);
+    inserir(&fila, 40);
+    inserir(&fila, pop(&pilha));
+    push(&pilha, remover(&fila));
+    inserir(&fila, remover(&fila));
+    push(&pilha, pop(&pilha));
+
+    printf("%d; %d; %d; %d;", remover(&fila), pop(&pilha), pop(&pilha), remover(&fila));
+
+-------------------------------------------------
+Resposta:
+
+30; 20; 10; 40;
