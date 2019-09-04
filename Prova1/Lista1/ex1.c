@@ -5,14 +5,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Stack Stack;
+typedef struct Queue Queue;
 typedef struct Element Element;
 
 // Função solicitada no enunciado do exercicio
-void reverse(Stack **s);
+void reverse(Queue *q);
 
-struct Stack {
-    Element* top;
+struct Queue {
+    Element* front;
+    Element* back;
 };
 
 struct Element {
@@ -20,11 +21,12 @@ struct Element {
     Element* next;
 };
 
-Stack* newStack() {
-    Stack *s = malloc(sizeof(Stack));
-    s->top = NULL;
+Queue* newQueue() {
+    Queue *q = malloc(sizeof(Queue));
+    q->front = NULL;
+    q->back = NULL;
 
-    return s;
+    return q;
 }
 
 Element* newElement(int data) {
@@ -34,31 +36,41 @@ Element* newElement(int data) {
     return e;
 }
 
-void push(int data, Stack *s) {
+void push(int data, Queue *q) {
     Element *e = newElement(data);
+
+    e->next = NULL;
+
+    if (q->front == NULL && q->back == NULL)
+        q->front = e;
+    else
+        q->back->next = e;
+
+    q->back = e;
+}
+/*
+void pushElement(Element *e, Queue *s) {
     e->next = s->top;
     s->top = e;
+}*/
+
+int pop(Queue *q) {
+    Element *aux = q->front;
+    int data = aux->data;
+
+    q->front = q->front->next;
+
+    // Se a fila estiver vazia
+    if (q->front == NULL)
+        q->back = NULL;
+
+    free(aux);
+
+    return data;
 }
 
-void pushElement(Element *e, Stack *s) {
-    e->next = s->top;
-    s->top = e;
-}
-
-int pop(Stack *s) {
-    Element *aux = s->top;
-
-    if (aux != NULL) {
-        int data = aux->data;
-        s->top = aux->next;
-        free(aux);
-        return data;
-    }
-    return -1;
-}
-
-void printStack(Stack *s) {
-    Element *it = s->top;
+void printQueue(Queue *q) {
+    Element *it = q->front;
 
     while (it != NULL) {
         printf("%d\n", it->data);
@@ -66,49 +78,45 @@ void printStack(Stack *s) {
     }
 }
 
-void reverse(Stack **s) {
-    Stack *aux = newStack();
-    Element *it = (*s)->top;
-    Element cp;     // Mantem uma copia do endereco do proximo elemento a ser utilizado
+void reverse(Queue *q) {
+    Element *prev = q->front;
+    Element *it = q->front->next;
+    Element *next = q->front->next->next;
 
-    while (it != NULL) {
-        // Faz a copia do valor atual de it
-        cp = *it;
-        // Na primeira execucao, o primeiro valor a ser colocado na pilha tera next apontando para NULL, ja que este eh o valor inicial. Nas proximas execucoes, next aponta para top (elemento anterior).
-        it->next = aux->top;
-        // Atualiza o topo da pilha.
-        aux->top = it;
-        // Itera mais uma vez pela pilha original, mas usando o endereco guardado em cp pois o valor de it foi alterado
-        it = cp.next;
+    q->back = q->front;
+
+    while (it->next != NULL) {
+        it->next = prev;
+        prev = it;
+        it = next;
+        next = next->next;
     }
+    it->next = prev;
+    q->front = it;
 
-    // Inverte a ordem dos elementos da pilha passada por parametro.
-    // O que é feito aqui é fazer com que s aponte para aux. Se aux for liberado, nao havera nada na pilha
-    *s = aux;
-    // Libera memoria
-    free(it);
+    q->back->next = NULL;
 }
 
 int main() {
-    Stack *s = newStack();
-    push(1, s);
-    push(2, s);
-    push(3, s);
-    push(4, s);
-    push(5, s);
-    push(6, s);
-    push(7, s);
-    push(8, s);
-    push(9, s);
+    Queue *q = newQueue();
+    push(1, q);
+    push(2, q);
+    push(3, q);
+    push(4, q);
+    push(5, q);
+    push(6, q);
+    push(7, q);
+    push(8, q);
+    push(9, q);
 
-    printf("Imprimindo a pilha no estado atual..\n");
-    printStack(s);
+    printf("Imprimindo a fila no estado atual..\n");
+    printQueue(q);
 
-    printf("Pressione enter para inverter e imprimir a pilha..");
+    printf("Pressione enter para inverter e imprimir a fila..");
     getchar();
 
-    reverse(&s);
-    printStack(s);
+    reverse(q);
+    printQueue(q);
 
     return 0;
 }
