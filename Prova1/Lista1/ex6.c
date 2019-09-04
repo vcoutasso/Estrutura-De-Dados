@@ -5,3 +5,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
+Stack* algarismos(long int num) {
+    Stack* s = newStack();
+
+    while (num) {
+        push(num % 10, s);
+        num /= 10;
+    }
+
+    return s;
+}

@@ -68,22 +68,22 @@ float calcRPN(char* str) {
         else if (ch == '+') {
             x = pop(s);
             y = pop(s);
-            push(x + y, s);
+            push(y + x, s);
         }
         else if (ch == '-') {
             x = pop(s);
             y = pop(s);
-            push(x - y, s);
+            push(y - x, s);
         }
         else if (ch == '*') {
             x = pop(s);
             y = pop(s);
-            push(x * y, s);
+            push(y * x, s);
         }
         else if (ch == '/') {
             x = pop(s);
             y = pop(s);
-            push(x / y, s);
+            push(y / x, s);
         }
         else if (ch == '^') {
             x = pop(s);
