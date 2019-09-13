@@ -75,22 +75,29 @@ int empty(List *l) {
 
 void push(List* l, int data, int pos) {
     Element* e = malloc(sizeof(Element)); // Elemento a ser inserido
-    Element* aux1 = l->front->next; // Elemento para qual e->next vai apontar
-    Element* aux2 = l->front; // Aponta para a posicao que sera inserido
     int count = 0;
 
-    if (pos > size(l)) {
-        printf("Error! Position %d is out of bounds.\n", pos);
-        return;
-    }
 
     e->data = data;
 
     if (pos == 0) {
         e->next = l->front;
         l->front = e;
+        l->back = e;
+    }
+    else if (pos >= size(l)) {
+        printf("Error! Position %d is out of bounds.\n", pos);
+        return;
+    }
+    else if (pos == -1) { // Insere no final da lista
+        e->next = NULL;
+        if (l->back != NULL)
+            l->back->next = e;
+        l->back = e;
     }
     else {
+        Element* aux1 = l->front->next; // Elemento para qual e->next vai apontar
+        Element* aux2 = l->front; // Aponta para a posicao que sera inserido
         while (count != pos) {
             aux1 = aux1->next;
             aux2 = aux2->next;
@@ -100,25 +107,58 @@ void push(List* l, int data, int pos) {
         e->next = aux1;
     }
 
+    if (l->back == NULL)
+        l->back = e;
+
 }
 
 int pop(List* l, int pos) {
-    Element* aux1 = l->front; // Elemento que aponta para o elemento que sera removido
-    Element* aux2 = l->front->next; // Posicao do elemento que sera removido
+    Element* prev = l->front; // Elemento que aponta para o elemento que sera removido
+    Element* aux = l->front->next; // Elemento que sera removido
     int data;
-    int cont = 0;
+    int cont = 1;
 
-    while (cont != pos) {
-        aux1 = aux1->next;
-        aux2 = aux2->next;
-        ++cont;
+    if (pos >= size(l)) {
+        if (pos == 0)
+            printf("Error! List is empty.\n");
+        else
+            printf("Error! Position %d is out of bounds.\n", pos);
+        return 0;
     }
 
-    data = aux2->data;
-    aux1->next = aux2->next;
+    else if (pos == 0) {
+        data = prev->data;
+        l->front = aux;
+        free(prev);
 
-    free(aux2);
-    return data;
+        return data;
+    }
+    else if (pos == -1) {
+        while (cont < size(l) - 1) {
+            aux = aux->next;
+            prev = prev->next;
+            ++cont;
+        }
+
+        data = aux->data;
+        prev->next = NULL;
+
+        free(aux);
+        return data;
+    }
+    else {
+        while (cont < pos) {
+            aux = aux->next;
+            prev = prev->next;
+            ++cont;
+        }
+
+        data = aux->data;
+        prev->next = aux->next;
+
+        free(aux);
+        return data;
+    }
 }
 
 void printList(List* l) {
@@ -134,12 +174,12 @@ void printList(List* l) {
 int main() {
     List* l = newList();
     push(l, 1, 0);
-    push(l, 2, 0);
-    push(l, 3, 0);
-    push(l, 4, 0);
-//    printList(l);
-//    pop(l, 2);
-//    printList(l);
+    push(l, 2, -1);
+    push(l, 3, -1);
+    push(l, 4, -1);
+    push(l, 5, -1);
+    pop(l, -1);
+    printList(l);
 
     return 0;
 }
