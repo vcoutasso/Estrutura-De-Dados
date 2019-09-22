@@ -147,9 +147,7 @@ int main() {
 		// Num passa a representar o valor maximo que podera ser obtido aleatoriamente
 		num *= 2;
 
-		printf("Gerando numeros aleatorios entre 0 e %d...\n\n", num);
-
-		++num;
+		printf("Gerando numeros aleatorios entre 0 e %d...\n\n", num-1);
 
 		setbuf(stdin, NULL);
 
