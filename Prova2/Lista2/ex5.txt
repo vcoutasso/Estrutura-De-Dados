@@ -1,0 +1,27 @@
+5. A função abaixo faz parte de uma lista simplesmente encadeada circular. Explique qual o objetivo dela, qual o erro em sua implementação, e como corrigi-lo.
+
+
+int f1(ListaCircular *lista)
+{
+    ListaDuplaCircular *and = lista;
+    int x = 0;
+    while(and!=NULL)
+    {
+        if(and->dado%2==0)
+        x++;
+        and = and->proximo;
+    }
+    return x;
+}  
+----------------------------------------------------
+RESPOSTA:
+Objetivo: A função parece ter o objetivo de contar a quantidade de valores pares em uma ListaCircular e retornar a quantidade de numeros pares encontrados.
+
+
+Problemas de implementação: *and é um ponteiro do tipo ListaDuplaCircular que aponta para um elemento do tipo ListaCircular. Apesar de ponteiros armazenarem endereços de memória, que são iguais para todo o tipo de variável, não é uma boa prática usar ponteiros de tipo X que apontam para valores de tipo Y, a não ser que o código seja robusto o suficiente para permitir isso sem causar problemas.
+Por ser uma lista circular, assumindo sua integridade, and->proximo nunca apontará para NULL, pois listas circulares não tem um fim definido. Seu "final" é seu começo. Portanto, o laço de repetição nunca terá fim.
+
+
+Sugestões para corrigir:
+O ponteiro *and deve ser, idealmente, do tipo ListaCircular para evitar possíveis problemas.
+O laço de repetição não deve ter um ponteiro apontando para NULL como condição de parada, mas sim verificar se *and e *lista apontam para o mesmo endereço. Ou seja, o laço deve acabar quando *and percorrer a lista inteira e voltar ao elemento inicial
