@@ -1,25 +1,16 @@
 /*
  * Escreva um programa para resolver o problema das n-rainhas, onde em um tabuleiro de tamanho n x n nenhuma rainha possa atacar as outras, ou seja, duas rainhas não podem compartilhar fila, coluna ou diagonal.
- */
-
- // TODO: Verificar se tem alguma bobeira no codigo que esteja prejudicando o tempo de execução.
- // Para valores de n maiores de 100 em meus testes, o tempo de execução pode demorar muito.
- // Pode ser algum erro no código ou limitação de hardware. Mais provável que algum bug.
-
- // TODO: Estudar a necessidade da variavel MAX, visto que é um valor completamente arbitrário.
- // Quando o valor for muito baixo, provavelmente haverá repetições desnecessárias de configurações do tabuleiro.
- // Estudar possíveis alternativas.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-// Limite de tentativas por coluna antes de voltar para o passo anterior
-#define MAX 2
+int verbose = 0;
 
 void printArray(int **arr, int n) {
-	int row = n;
-	int col = n;
+	int row;
+	int col;
 
 	for (row = 0; row < n; ++row) {
 		for (col = 0; col < n; ++col)
@@ -29,7 +20,8 @@ void printArray(int **arr, int n) {
 	printf("\n");
 }
 
-int isTileFree(int **arr, int n, int row, int col) {
+// Verifica se a posição indicada por row e col é uma posição válida (não está sendo atacada por outras rainhas)
+int isPositionValid(int **arr, int n, int row, int col) {
 	int i, j;
 
 	// Verifica se ja existe uma rainha em row
@@ -67,83 +59,67 @@ int isTileFree(int **arr, int n, int row, int col) {
 
 // Função recursiva para encontrar a solução. arr representa o tabuleiro, n o tamanho (nxn) e col a coluna na qual o algoritmo tentará encontrar a solução
 int findSolution(int **arr, int n, int col) {
+	// Variavel para verificar quantas das possiveis rows foram tentativas sem sucesso de escolher a prox posição. Usado para retornar para a coluna anterior se falhar em todos os casos
 	int tries = 0;
-	int row;
-	int count = 0;
+	int row = 0;
+	int i = 0;
 
-	// Imprime estado atual do tabuleiro para acompanhar a solução
-	//printArray(arr, n);
+	while (1) {
 
-	// Se for a primeira posição, escolhe aleatoriamente uma row
-	if (col == 0) {
-		int rd = rand() % n;
-		arr[rd][col] = 1;
-		while (findSolution(arr, n, col + 1) == 0) {
-			arr[rd][col] = -1;
-			while (arr[rd][col] == -1)
-				rd = rand() % n;
-			arr[rd][col] = 1;
+		// Imprime estado atual do tabuleiro para acompanhar a solução. OBS: Tem impacto significativo na performance.
+		if (verbose) {
+			printf("Tentativa %d da coluna %d\n", tries, col);
+			printArray(arr, n);
 		}
-		for (row = 0; row < n; ++row) {
-			if (arr[row][col] == -1)
-				arr[row][col] = 0;
-		}
-	}
-	// Caso contrario, escolhe rows aleatorias até que encontre uma válida
-	// Escolhe um valor aleatoriamente e verifica se é valido. Se não for, marca a posição como -1 para não continuar tentando as mesmas posições
-	else {
-		while (1) {
 
-			// Se tiver tentado muitas vezes, volta um passo
-			count++;
-			if (count > MAX)
-				return 0;
-
-			printf("Tentativa %d da coluna %d\n", count, col);
-
-			// TODO: Não chamar isTileFree() se a condição do if for verdadeira
-			do {
-				row = rand() % n;
-				if (arr[row][col] != -1) {
-					arr[row][col] = -1;
-					++tries;
+		// Escolhe uma row aleatoriamente.
+		// TODO: Restringir o numero de opções para apenas row validas (que ainda não foram selecionadas). Atualmente todo numero no intervalo de 0 a n é valido, podendo haver (potencialmente muitas) repetições desnecessárias.
+		// OBS: Restringindo as possibilidades de valores para row, o numero de tentativas necessarias tambem diminui, aumentando ainda mais a performance. Porem, deve ser ajustada a condição do do while
+		do {
+			row = rand() % n;
+			// Se nao tiver tentado com esse valor antes
+			if (arr[row][col] != -1) {
+				arr[row][col] = -1;
+				++tries;
+				if (isPositionValid(arr, n, row, col) == 1) {
+					// Marca a posição valida encontrada
+					arr[row][col] = 1;
+					break; // Se achou uma posição válida
 				}
-			} while (!isTileFree(arr, n, row, col) && tries < n);
+			}
+			else {
+				// Se tiver tentado todas as posições sem sucesso, retorna 0 para alterar a posição anterior. Caso contrário, continua resolvendo a partir da posição encontrada
+				if (tries == n) {
+					for (i = 0; i < n; ++i)
+						arr[i][col] = 0;
 
-		// Se tiver tentado todas as posições sem sucesso, retorna 0 para alterar a posição anterior. Caso contrário, continua resolvendo a partir da posição encontrada
-		if (tries < n)
-			arr[row][col] = 1;
+					return 0;
+				}
+			}
+		} while (1);
 
-			// Reseta a coluna e retorna 0
-		else {
-			for (row = 0; row < n; ++row)
-				arr[row][col] = 0;
-			return 0;
-		}
-
+		// Se nao for a ultima coluna
 		if (col < n - 1) {
-			 if (findSolution(arr, n, col + 1) == 1) {
-				 for (row = 0; row < n; ++row) {
-					 if (arr[row][col] == -1)
-						 arr[row][col] = 0;
-				 }
-				 return 1;
-			 }
-			 // Reseta a coluna e procura outra posicao
-			 else {
-				 for (row = 0; row < n; ++row)
-					 arr[row][col] = 0;
-				 tries = 0;
-			 }
+			// Se tiver sucesso em achar a proxima posicao, limpa as posicoes que ja foram tentadas nessa coluna e retorna 1 sinalizando outro sucesso
+			if (findSolution(arr, n, col + 1) == 1) {
+				for (i = 0; i < n; ++i) {
+					if (arr[i][col] == -1)
+						arr[i][col] = 0;
+				}
+				return 1;
+			}
+			// Marca a posição atual como invalida e procura outra posicao na proxima iteracao
+			else {
+				arr[row][col] = -1;
+			}
 		}
-			// Se for a ultima coluna, retorna 1
+		// Se for a ultima coluna, retorna 1
 		else {
-			for (row = 0; row < n; ++row) {
-				if (arr[row][col] == -1)
-					arr[row][col] = 0;
+			for (i = 0; i < n; ++i) {
+				if (arr[i][col] == -1)
+					arr[i][col] = 0;
 			}
 			return 1;
-		}
 		}
 	}
 }
@@ -165,20 +141,29 @@ void nQueens(int n) {
 
 	printArray(board, n);
 
+	for(row = 0; row < n; ++row)
+		free(board[row]);
+
+	free(board);
+
 }
 
-int main() {
+int main(int argc, char** argv) {
 	int n;
 
 	srand(time(NULL));
 
-	printf("Informe o valor de N para um tabuleiro NxN: ");
-	scanf("%d", &n);
+	if (argc == 1) {
+		printf("Informe o valor de N para um tabuleiro NxN: ");
+		scanf("%d", &n);
+	}
+	else
+		n = strtol(argv[1], NULL, 10);
 
 	if (n > 3)
 		nQueens(n);
 	else
-		printf("No solution for n = %d\n", n);
+		printf("Valor invalido!\n");
 
 	return 0;
 }
