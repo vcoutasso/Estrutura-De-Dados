@@ -14,7 +14,7 @@ void printArray(int **arr, int n) {
 
 	for (row = 0; row < n; ++row) {
 		for (col = 0; col < n; ++col)
-			printf("%d ", arr[row][col]);
+			printf("%c ", arr[row][col] ? 'Q' : '-');
 		printf("\n");
 	}
 	printf("\n");
