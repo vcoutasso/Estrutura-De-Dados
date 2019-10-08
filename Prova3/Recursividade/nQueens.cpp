@@ -24,7 +24,6 @@ std::vector<bool> attackedPositions;
 std::vector<Queen> queens;
 
 void updateAttackedPositions(int n) {
-	clock_t time = std::clock();
 	std::vector<Queen>::iterator it;
 
 	int queenPosition;
@@ -69,7 +68,6 @@ void updateAttackedPositions(int n) {
 		}
 
 		attackedPositions[queenPosition] = false;
-		total_time += time - std::clock();
 	}
 }
 
@@ -77,8 +75,11 @@ int findSolution(int n, int col) {
 	//int tentativas = 0;
 	std::vector<int> possiveisValores;
 
-	for (int i = 0; i < n; ++i)
+	for (int i = 0; i < n; ++i) {
+		// if it isn't under attack
+		if (!attackedPositions[col * n + i])
 		possiveisValores.push_back(i);
+	}
 
 	int row = 0;
 
@@ -134,8 +135,6 @@ void printBoard(int n) {
 }
 
 void nQueens(int n) {
-	begin_time = std::clock();
-
 	for (int i = 0; i < n * n; i++)
 		attackedPositions.push_back(false);
 
@@ -158,10 +157,12 @@ int main(int argc, char **argv) {
 
 	if (n < 4)
 		std::cout << "N deve ser maior que 4!" << std::endl;
-	else
+	else {
+		begin_time = std::clock();
 		nQueens(n);
+		std::cout << "\nSolution found in " << float(std::clock() - begin_time) / CLOCKS_PER_SEC << "s" << std::endl;
+	}
 
-	std::cout << "\nTotal time: " << float( std::clock() - begin_time) / CLOCKS_PER_SEC << "s" << std::endl;
 
 	return 0;
 }
