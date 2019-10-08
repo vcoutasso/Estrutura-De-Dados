@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <algorithm>
 
 typedef struct Queen Queen;
 
@@ -74,19 +75,30 @@ void updateAttackedPositions(int n) {
 
 int findSolution(int n, int col) {
 	//int tentativas = 0;
+	std::vector<int> possiveisValores;
+
+	for (int i = 0; i < n; ++i)
+		possiveisValores.push_back(i);
+
 	int row = 0;
 
 	while (true) {
 		do {
 			// No valid position within this column with current queens placement. Return 1 step and keep trying
-			if (row >= n)
+			if (possiveisValores.size() == 0)
 				return 0;
+
+			row = possiveisValores[rand() % possiveisValores.size()];
 
 			// if isn't attacked;
 			if (!attackedPositions[col * n + row])
 				break;
-			++row;
 
+			//possiveisValores.erase(std::remove(possiveisValores.begin(), possiveisValores.end(), row), possiveisValores.end());
+
+			auto it = std::find(possiveisValores.begin(), possiveisValores.end(), row);
+			if (it != possiveisValores.end())
+				possiveisValores.erase(it);
 
 		} while (true);
 
@@ -99,7 +111,10 @@ int findSolution(int n, int col) {
 			else {
 				queens.pop_back();
 				updateAttackedPositions(n);
-				++row;
+
+			auto it = std::find(possiveisValores.begin(), possiveisValores.end(), row);
+			if (it != possiveisValores.end())
+				possiveisValores.erase(it);
 			}
 		}
 		else
@@ -146,7 +161,7 @@ int main(int argc, char **argv) {
 	else
 		nQueens(n);
 
-	std::cout << "Total time: " << float( std::clock() - begin_time) / CLOCKS_PER_SEC << "s" << std::endl;
+	std::cout << "\nTotal time: " << float( std::clock() - begin_time) / CLOCKS_PER_SEC << "s" << std::endl;
 
 	return 0;
 }
