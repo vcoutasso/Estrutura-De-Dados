@@ -9,9 +9,12 @@
 
 typedef struct Queen Queen;
 
+clock_t begin_time;
+clock_t total_time = 0;
+
 struct Queen {
-	short row;
-	short col;
+	int row;
+	int col;
 };
 
 // true if position is attacked and false otherwise
@@ -19,39 +22,71 @@ std::vector<bool> attackedPositions;
 // holds the positions of all placed queens
 std::vector<Queen> queens;
 
-void updateAttackedPositions(short n) {
+void updateAttackedPositions(int n) {
+	clock_t time = std::clock();
 	std::vector<Queen>::iterator it;
-	std::vector<bool>::iterator aux_it;
 
-	// horizontal and vertical
+	int queenPosition;
+	int i;
+
+	// reset board
+	for (i = 0; i < n * n; ++i)
+		attackedPositions[i] = false;
+
 	for (it = queens.begin(); it != queens.end(); ++it) {
 
-		for (int i = 0; i < n; ++i) {
-			attackedPositions[i * n + it->row] = true;
+		queenPosition = it->col * n + it->row;
+
+		int col = it->col;
+		int row = it->row;
+
+		// same row
+		for (i = 0; i < n; ++i)
+			attackedPositions[n * i + row] = true;
+
+		// same column
+		for (i = 0; i < n; ++i)
+			attackedPositions[col * n + i] = true;
+
+		// diagonal
+		for (i = 1; i < n; ++i) {
+			if (queenPosition - i * (n + 1) > 0)
+				attackedPositions[queenPosition - i * (n + 1)] = true;
+			if (queenPosition + i * (n + 1) < n * n)
+				attackedPositions[queenPosition + i * (n + 1)] = true;
 		}
 
-		for (int i = 0; i < n; ++i) {
-			attackedPositions[it->col * n + i] = true;
+		while (col > 0 && row < n - 1) {
+			++row;
+			--col;
 		}
 
-		// TODO: implement diagonal
+		while (row >= 0 && col < n) {
+			attackedPositions[col * n + row] = true;
+			--row;
+			++col;
+		}
+
+		attackedPositions[queenPosition] = false;
+		total_time += time - std::clock();
 	}
 }
 
-int findSolution(short n, short col) {
-	//short tentativas = 0;
-	short row = 0;
+int findSolution(int n, int col) {
+	//int tentativas = 0;
+	int row = 0;
 
 	while (true) {
 		do {
-			// if isn't attacked;
-			if (!attackedPositions[row])
-				break;
-			++row;
-
 			// No valid position within this column with current queens placement. Return 1 step and keep trying
 			if (row >= n)
 				return 0;
+
+			// if isn't attacked;
+			if (!attackedPositions[col * n + row])
+				break;
+			++row;
+
 
 		} while (true);
 
@@ -64,6 +99,7 @@ int findSolution(short n, short col) {
 			else {
 				queens.pop_back();
 				updateAttackedPositions(n);
+				++row;
 			}
 		}
 		else
@@ -71,22 +107,22 @@ int findSolution(short n, short col) {
 	}
 }
 
-void printBoard(short n) {
+void printBoard(int n) {
 	char ch;
 	for (int col = 0; col < n; ++col) {
-		for (int rol = 0; rol < n; ++rol) {
-			ch = attackedPositions[col * n + rol] ? '-' : 'Q';
+		for (int row = 0; row < n; ++row) {
+			ch = attackedPositions[col + n * row] ? '-' : 'Q';
 			std::cout << ch << " ";
 		}
 		std::cout << std::endl;
 	}
 }
 
-void nQueens(short n) {
+void nQueens(int n) {
+	begin_time = std::clock();
+
 	for (int i = 0; i < n * n; i++)
 		attackedPositions.push_back(false);
-
-	attackedPositions.push_back(true);
 
 	findSolution(n, 0);
 
@@ -96,16 +132,21 @@ void nQueens(short n) {
 int main(int argc, char **argv) {
 	srand(time(nullptr));
 
-	short n;
+	int n;
 
 	if (argc < 2) {
 		std::cout << "Informe o valor de N para um tabuleiro NxN: ";
 		std::cin >> n;
 	}
 	else
-		n = (short) strtol(argv[1], nullptr, 10);
+		n = (int) strtol(argv[1], nullptr, 10);
 
-	nQueens(n);
+	if (n < 4)
+		std::cout << "N deve ser maior que 4!" << std::endl;
+	else
+		nQueens(n);
+
+	std::cout << "Total time: " << float( std::clock() - begin_time) / CLOCKS_PER_SEC << "s" << std::endl;
 
 	return 0;
 }
