@@ -78,7 +78,7 @@ int findSolution(int n, int col) {
 	for (int i = 0; i < n; ++i) {
 		// if it isn't under attack
 		if (!attackedPositions[col * n + i])
-		possiveisValores.push_back(i);
+			possiveisValores.push_back(i);
 	}
 
 	int row = 0;
@@ -95,11 +95,11 @@ int findSolution(int n, int col) {
 			if (!attackedPositions[col * n + row])
 				break;
 
-			//possiveisValores.erase(std::remove(possiveisValores.begin(), possiveisValores.end(), row), possiveisValores.end());
-
 			auto it = std::find(possiveisValores.begin(), possiveisValores.end(), row);
-			if (it != possiveisValores.end())
-				possiveisValores.erase(it);
+			if (it != possiveisValores.end()) {
+				std::swap(*it, possiveisValores.back());
+				possiveisValores.pop_back();
+			}
 
 		} while (true);
 
@@ -113,9 +113,11 @@ int findSolution(int n, int col) {
 				queens.pop_back();
 				updateAttackedPositions(n);
 
-			auto it = std::find(possiveisValores.begin(), possiveisValores.end(), row);
-			if (it != possiveisValores.end())
-				possiveisValores.erase(it);
+				auto it = std::find(possiveisValores.begin(), possiveisValores.end(), row);
+				if (it != possiveisValores.end()) {
+					std::swap(*it, possiveisValores.back());
+					possiveisValores.pop_back();
+				}
 			}
 		}
 		else
