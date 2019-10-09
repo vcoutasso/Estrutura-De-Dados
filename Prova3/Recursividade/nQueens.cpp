@@ -33,7 +33,7 @@ void updateAttackedPositions(int n, std::vector<Queen>::iterator it) {
 	int queenPosition;
 	int i;
 
-	for (it = queens.begin(); it != queens.end(); ++it) {
+	for (; it != queens.end(); ++it) {
 
 		queenPosition = it->col * n + it->row;
 
@@ -108,7 +108,7 @@ int findSolution(int n, int col) {
 
 		queens.push_back(Queen{row, col});
 		// add positions under attack by latest queen
-		updateAttackedPositions(n, queens.end());
+		updateAttackedPositions(n, queens.end() - 1);
 
 		if (col < n - 1) {
 			if (findSolution(n, col + 1))
