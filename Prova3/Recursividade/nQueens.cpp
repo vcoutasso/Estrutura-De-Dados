@@ -6,7 +6,6 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
-#include <algorithm>
 
 typedef struct Queen Queen;
 
@@ -23,16 +22,16 @@ std::vector<bool> attackedPositions;
 // holds the positions of all placed queens
 std::vector<Queen> queens;
 
-void updateAttackedPositions(int n) {
-	std::vector<Queen>::iterator it;
+void clearBoard() {
+	// reset board
+	std::fill(attackedPositions.begin(), attackedPositions.end(), false);
+}
 
+void updateAttackedPositions(int n, std::vector<Queen>::iterator it) {
 	int col;
 	int row;
 	int queenPosition;
 	int i;
-
-	// reset board
-	std::fill(attackedPositions.begin(), attackedPositions.end(), false);
 
 	for (it = queens.begin(); it != queens.end(); ++it) {
 
@@ -108,18 +107,21 @@ int findSolution(int n, int col) {
 		} while (true);
 
 		queens.push_back(Queen{row, col});
-		updateAttackedPositions(n);
+		// add positions under attack by latest queen
+		updateAttackedPositions(n, queens.end());
 
 		if (col < n - 1) {
 			if (findSolution(n, col + 1))
 				return 1;
 			else {
 				queens.pop_back();
-				updateAttackedPositions(n);
+				// reset board and reset all attacked positions
+				clearBoard();
+				updateAttackedPositions(n, queens.begin());
 
 				std::swap(*it, possiblePositions.back());
 				possiblePositions.pop_back();
-				}
+			}
 		}
 		else
 			return 1;
