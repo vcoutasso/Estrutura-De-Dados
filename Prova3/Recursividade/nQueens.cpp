@@ -26,19 +26,20 @@ std::vector<Queen> queens;
 void updateAttackedPositions(int n) {
 	std::vector<Queen>::iterator it;
 
+	int col;
+	int row;
 	int queenPosition;
 	int i;
 
 	// reset board
-	for (i = 0; i < n * n; ++i)
-		attackedPositions[i] = false;
+	std::fill(attackedPositions.begin(), attackedPositions.end(), false);
 
 	for (it = queens.begin(); it != queens.end(); ++it) {
 
 		queenPosition = it->col * n + it->row;
 
-		int col = it->col;
-		int row = it->row;
+		col = it->col;
+		row = it->row;
 
 		// same row
 		for (i = 0; i < n; ++i)
@@ -73,33 +74,36 @@ void updateAttackedPositions(int n) {
 
 int findSolution(int n, int col) {
 	//int tentativas = 0;
-	std::vector<int> possiveisValores;
+	std::vector<int> possiblePositions;
 
 	for (int i = 0; i < n; ++i) {
 		// if it isn't under attack
 		if (!attackedPositions[col * n + i])
-			possiveisValores.push_back(i);
+			possiblePositions.push_back(i);
 	}
 
 	int row = 0;
+	int index;
+
+	std::vector<int>::iterator it;
 
 	while (true) {
 		do {
 			// No valid position within this column with current queens placement. Return 1 step and keep trying
-			if (possiveisValores.size() == 0)
+			if (possiblePositions.size() == 0)
 				return 0;
 
-			row = possiveisValores[rand() % possiveisValores.size()];
+			index = rand() % possiblePositions.size();
+			row = possiblePositions[index];
+
+			it = possiblePositions.begin() + index;
 
 			// if isn't attacked;
 			if (!attackedPositions[col * n + row])
 				break;
 
-			auto it = std::find(possiveisValores.begin(), possiveisValores.end(), row);
-			if (it != possiveisValores.end()) {
-				std::swap(*it, possiveisValores.back());
-				possiveisValores.pop_back();
-			}
+			std::swap(*it, possiblePositions.back());
+			possiblePositions.pop_back();
 
 		} while (true);
 
@@ -113,12 +117,9 @@ int findSolution(int n, int col) {
 				queens.pop_back();
 				updateAttackedPositions(n);
 
-				auto it = std::find(possiveisValores.begin(), possiveisValores.end(), row);
-				if (it != possiveisValores.end()) {
-					std::swap(*it, possiveisValores.back());
-					possiveisValores.pop_back();
+				std::swap(*it, possiblePositions.back());
+				possiblePositions.pop_back();
 				}
-			}
 		}
 		else
 			return 1;
