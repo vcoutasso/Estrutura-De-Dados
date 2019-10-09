@@ -84,8 +84,6 @@ int findSolution(int n, int col) {
 	int row = 0;
 	int index;
 
-	std::vector<int>::iterator it;
-
 	while (true) {
 		do {
 			// No valid position within this column with current queens placement. Return 1 step and keep trying
@@ -95,14 +93,14 @@ int findSolution(int n, int col) {
 			index = rand() % possiblePositions.size();
 			row = possiblePositions[index];
 
-			it = possiblePositions.begin() + index;
+			// removes the positions because its value has already been stored
+			std::swap(*(possiblePositions.begin() + index), possiblePositions.back());
+			possiblePositions.pop_back();
 
 			// if isn't attacked;
 			if (!attackedPositions[col * n + row])
 				break;
 
-			std::swap(*it, possiblePositions.back());
-			possiblePositions.pop_back();
 
 		} while (true);
 
@@ -118,9 +116,6 @@ int findSolution(int n, int col) {
 				// reset board and reset all attacked positions
 				clearBoard();
 				updateAttackedPositions(n, queens.begin());
-
-				std::swap(*it, possiblePositions.back());
-				possiblePositions.pop_back();
 			}
 		}
 		else
@@ -140,11 +135,13 @@ void printBoard(int n) {
 }
 
 void nQueens(int n) {
-	for (int i = 0; i < n * n; i++)
-		attackedPositions.push_back(false);
+	// create board
+	attackedPositions.insert(attackedPositions.begin(), n * n, false);
 
+	// find solution for the first column. since its a recursive function, there's no need to call it for the remaining columns
 	findSolution(n, 0);
 
+	// print final board
 	printBoard(n);
 }
 
