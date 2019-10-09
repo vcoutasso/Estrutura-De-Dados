@@ -10,7 +10,6 @@
 typedef struct Queen Queen;
 
 clock_t begin_time;
-clock_t total_time = 0;
 
 struct Queen {
 	int row;
@@ -22,12 +21,26 @@ std::vector<bool> attackedPositions;
 // holds the positions of all placed queens
 std::vector<Queen> queens;
 
+bool isSafe(int row, int col) {
+
+	for (auto it = queens.begin(); it != queens.end(); ++it) {
+		int queen_row = it->row;
+		int queen_col = it->col;
+
+		if (queen_row == row || queen_row - queen_col == row - col || queen_row + queen_col == row + col)
+			return false;
+	}
+
+	return true;
+}
+
 
 void clearBoard() {
 	// reset board
 	std::fill(attackedPositions.begin(), attackedPositions.end(), false);
 }
 
+// sets attackedPositions[k] to true if it is under attack. not used because its too costly
 void updateAttackedPositions(int n, std::vector<Queen>::iterator it) {
 	int col;
 	int row;
@@ -69,7 +82,6 @@ void updateAttackedPositions(int n, std::vector<Queen>::iterator it) {
 }
 
 int findSolution(int n, int col) {
-	//int tentativas = 0;
 	std::vector<int> possiblePositions;
 
 	for (int i = 0; i < n; ++i) {
@@ -95,25 +107,19 @@ int findSolution(int n, int col) {
 			possiblePositions.pop_back();
 
 			// if isn't attacked;
-			if (!attackedPositions[col * n + row])
+			if (isSafe(row, col))
 				break;
 
 
 		} while (true);
 
 		queens.push_back(Queen{row, col});
-		// add positions under attack by latest queen
-		updateAttackedPositions(n, queens.end() - 1);
 
 		if (col < n - 1) {
 			if (findSolution(n, col + 1))
 				return 1;
-			else {
+			else
 				queens.pop_back();
-				// reset board and reset all attacked positions
-				clearBoard();
-				updateAttackedPositions(n, queens.begin());
-			}
 		}
 		else
 			return 1;
@@ -124,7 +130,7 @@ void printBoard(int n) {
 	char ch;
 	for (int col = 0; col < n; ++col) {
 		for (int row = 0; row < n; ++row) {
-			ch = attackedPositions[col + n * row] ? '-' : 'Q';
+			ch = (queens.begin() + col)->row == row ? 'Q' : '-';
 			std::cout << ch << " ";
 		}
 		std::cout << std::endl;
