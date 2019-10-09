@@ -22,6 +22,7 @@ std::vector<bool> attackedPositions;
 // holds the positions of all placed queens
 std::vector<Queen> queens;
 
+
 void clearBoard() {
 	// reset board
 	std::fill(attackedPositions.begin(), attackedPositions.end(), false);
@@ -43,10 +44,6 @@ void updateAttackedPositions(int n, std::vector<Queen>::iterator it) {
 		// same row
 		for (i = 0; i < n; ++i)
 			attackedPositions[n * i + row] = true;
-
-		// same column
-		for (i = 0; i < n; ++i)
-			attackedPositions[col * n + i] = true;
 
 		// diagonal
 		for (i = 1; i < n; ++i) {
