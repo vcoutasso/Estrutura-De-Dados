@@ -1,0 +1,23 @@
+Tamanho do vetor utilizado: 200000
+
+
+Bubble Sort
+Comparisons: 20000099999
+Movements:   17933195956
+Time Taken:  102.30 s
+
+Selection Sort
+Comparisons: 20000100000
+Movements:   400000
+Time Taken:  37.52 s
+
+Insertion Sort
+Comparisons: 9989144802
+Movements:   9989344801
+Time Taken:  23.28 s
+
+Merge Sort
+Comparisons: 10283261
+Movements:   7075750
+Time Taken:  0.04 s
+

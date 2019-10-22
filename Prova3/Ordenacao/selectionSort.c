@@ -3,24 +3,19 @@
 #include <time.h>
 
 void selectionSort(int *arr, int size) {
-	int pos = 0;
 	int i, j;
 	int aux;
-	int min, minPos;
+	int minPos;
 
 	for (i = 0; i < size; i++) {
-		min = *(arr+i);
 		minPos = i;
 		for (j = i; j < size; j++) {
-			if (*(arr+j) < min) {
-				min = *(arr+j);
+			if (*(arr+j) < *(arr+minPos))
 				minPos = j;
-			}
 		}
 		aux = *(arr+i);
 		*(arr+i) = *(arr+minPos);
 		*(arr+minPos) = aux;
-		pos++;
 	}
 }
 
