@@ -1,0 +1,28 @@
+O que o programa abaixo imprimirá na tela quando executado?
+
+#include<stdio.h>
+
+void f2(int n)
+{
+    if(n<=0) return;
+    printf("%d ", n);
+    f2(n-1);
+}
+
+void f1(int x[], int t)
+{
+    if(t<=0) return;
+    f1(x, t-1);
+    f2(x[t-1]);
+}
+
+int main()
+{
+    int vetor[] = {3,2,5,1};
+    f1(vetor, 4);
+}
+ 
+--------------------------------------------
+
+
+3 2 1 2 1 5 4 3 2 1 1 
