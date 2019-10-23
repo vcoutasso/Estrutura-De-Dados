@@ -1,0 +1,32 @@
+O que será escrito na tela quando o código abaixo for executado?
+
+int f1(int x)
+{
+    if(x<=0)
+        return 1;
+    if(x%2==1)
+    {
+        printf("%d\n", x);
+        f1(x-1);
+    }
+    if(x%2==0)
+    {
+        f1(x-1);
+        printf("%d\n", x);
+    }
+}
+
+int main()
+{
+    f1(5);
+    return 0;
+}
+
+--------------------------
+
+5
+3
+1
+2
+4
+

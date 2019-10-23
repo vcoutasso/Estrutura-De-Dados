@@ -1,0 +1,49 @@
+Dado o programa abaixo, o que será impresso na tela? Descreva o que a função f1 faz.
+
+#include<stdio.h>
+
+int f1(char str1[], char str2[])
+{
+   if(str1[0]=='\0' || str2[0]=='\0')
+   {
+      if(str1[0]==str2[0])
+         return 1;
+      else
+         return 0;
+   }
+   else
+   {
+      if(str1[0]==str2[0] && f1(&str1[1], &str2[1])==1)
+         return 1;
+      else
+         return 0;
+   }
+}
+
+
+int main()
+{
+   char a[] = "Joao";
+   char b[] = "Maria";
+   char c[] = "Joao";
+   char d[] = "Jose";
+   char e[] = "Mario";
+   int x1,x2,x3,x4,x5,x6;
+
+   x1 = f1(a,b);
+   x2 = f1(b,c);
+   x3 = f1(e,b);
+   x4 = f1(a,c);
+   x5 = f1(d,a);
+   x6 = f1(c,a);
+
+  printf(“%d;%d;%d;%d;%d;%d;”, x1,x2,x3,x4,x5,x6);
+
+}
+
+--------------
+
+0;0;0;1;0;1;
+
+A função f1 verifica recursivamente, caractere por caractere, se as duas strings str1 e str2 contem o mesmo conteudo. A função f1 é chamada recursivamente até chegar no final de str1 ou de str2. Se apenas uma delas estiver em seu ultimo caractere, significa que as strings sao diferentes (tamanhos diferentes) e retorna 0. Caso contrario, continua a verificar caractere por caractere se são todos identicos. Caso positivo, retorna 1. Caso contrário, retorna 0.
+
