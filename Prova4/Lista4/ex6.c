@@ -5,9 +5,10 @@
 
  #include <stdio.h>
 
- int printLeaves(Tree *t, int count) {
+ int printLeaves(Tree *t) {
+	 int count = 0;
 	 if (t->left != NULL)
-	 	count = printLeaves(t->left, count);
+	 	count += printLeaves(t->left);
 
 	// Se for no folha;
 	if (t->left == NULL && t->right == NULL) {
@@ -16,7 +17,7 @@
 	}
 
 	if (t->right != NULL)
-		count = printLeaves(t->right, count);
+		count += printLeaves(t->right);
 
 	return count;
  }

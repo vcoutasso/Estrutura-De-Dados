@@ -6,15 +6,17 @@
 
 #include <stdio.h>
 
-int pairSum(Tree *t, int sum) {
+int pairSum(Tree *t) {
+	int sum = 0;
+	
 	if (t->left != NULL)
-		sum = pairSum(t->left, sum);
+		sum += pairSum(t->left);
 
 	if (t->data % 2 == 0)
 		sum += t->data;
 
 	if (t->right != NULL)
-		sum = pairSum(t->right, sum);
+		sum += pairSum(t->right);
 
 	return sum;
 }
