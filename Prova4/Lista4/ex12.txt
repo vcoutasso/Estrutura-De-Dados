@@ -1,0 +1,17 @@
+Uma tabela hash com a função hash a seguir está com fator de carga 0,5, sem colisões. Considerando que o rehash acontece quando o fator de carga chega em 0,75, quantos elementos devem ser inseridos para que este procedimento ocorra? Demonstre o raciocínio.
+
+int hash(int key) { return (key%6) + (key%17)  + (key%11); }
+
+RESPOSTA:
+
+Maior valor possivel para (key % 6) = 5
+Maior valor possivel para (key % 17) = 16
+Maior valor possivel para (key % 11) = 10
+
+Maior indice possivel = 31 --> Lista tem tamanho 32 (0-31)
+
+Fator 0.5 de carga --> 16 posições ocupadas
+
+0.75 * 31 = 23.25 --> 24 posições ocupadas
+
+Portanto, 8 elementos devem ser inseridos para ocupar alcançar o fator de carga responsável por indicar que um rehash deve ocorrer.

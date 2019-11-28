@@ -1,0 +1,119 @@
+Mostre os estados de uma árvore AVL após cada inserção da sequência { 10, 20, 15, 25, 30, 16, 18, 19 }. Detalhe as rotações que forem necessárias, dizendo em qual nó elas ocorreram, para qual lado, e durante a inserção de qual número.
+
+RESPOSTA:
+
+Inserção: 10
+Estado da árvore:
+    10
+    /\
+
+Inserção: 20
+Estado da árvore:
+    10
+    /\
+      20
+
+Inserção: 20
+Estado da árvore:
+    10
+    /\
+      20
+      /\
+     15
+
+Rotação dupla para esquerda no nó 20:
+Primeira rotação (direita):
+    10
+    /\
+      15
+       /\
+         20
+
+Segunda rotação (esquerda):
+    15
+    /\
+   10 20
+
+Inserção: 25
+Estado da árvore:
+    15
+    /\
+   10 20
+       /\
+         25
+
+Inserção: 30
+Estado da árvore:
+    15
+    /\
+   10 20
+       /\
+         25
+         /\
+           30
+
+Rotação para esquerda no nó 25:
+    15
+    /\
+   10 25
+      /\
+     20 30
+
+Inserção: 16
+Estado da árvore:
+    15
+    /\
+   10 25
+      /\
+     20 30
+     /\
+    16
+
+Dupla rotação para esquerda no nó 25:
+Primeira rotação (direita):
+    15
+    /\
+   10 20
+      /\
+     16 25
+        /\
+          30
+
+Segunda rotação (esquerda):
+    20
+    /\
+   15 25
+   /\   \
+  10 16  30
+
+
+Inserção: 18
+Estado da árvore:
+   20
+    /\
+   15 25
+   /\   \
+  10 16  30
+       \
+        18  
+
+Inserção: 19
+Estado da árvore:
+   20
+    /\
+   15 25
+   /\   \
+  10 16  30
+       \
+        18 
+          \
+           19
+
+Rotação para esquerda no nó 18:
+    20
+    /\
+   15 25
+   /\   \
+  10 18  30
+     /\
+    16 19 

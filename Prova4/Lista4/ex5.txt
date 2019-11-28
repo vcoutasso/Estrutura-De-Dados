@@ -1,0 +1,71 @@
+Mostre os estados de uma árvore AVL após cada inserção da sequência {12, 23, 41, 36, 44, 38}. Detalhe as rotações que forem necessárias, dizendo em qual nó elas ocorreram, para qual lado, e durante a inserção de qual número.
+
+RESPOSTA:
+
+Inserção: 12
+Estado da árvore:
+    12
+    /\
+    
+Inserção: 23
+Estado da árvore:
+    12
+    /\
+      23
+      
+Inserção: 41
+Estado da árvore:
+    12
+    /\
+      23
+      /\
+        41
+        
+Rotação no nó 23 para esquerda:
+    23
+    /\
+  12  41
+  
+Inserção: 36
+Estado da árvore:
+    23
+    /\
+  12  41
+      /\
+     36
+     
+Inserção: 44
+Estado da árvore:
+    23
+    /\
+  12  41
+      /\
+     36 44
+     
+Inserção: 38
+Estado da árvore:
+    23
+    /\
+  12  41
+      /\
+     36 44
+     /\
+      38
+      
+Rotação dupla no 36 para esquerda:
+Primeira rotaçao (direita):
+    23
+    /\
+  12  36
+      /\
+        41
+        /\
+       38 44
+    
+Segunda rotação (esquerda):
+    36
+    /\
+  23  41
+  /   /\
+ 12  38 44
+
