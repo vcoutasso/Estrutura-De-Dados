@@ -58,57 +58,75 @@ void printTree(Tree* t) {
 		printTree(t->right);
 }
 
-int minVal(Tree *t, int min) {
+int minVal(Tree *t) {
+
+	if (t->left == NULL && t->right == NULL)
+		return t->data;
+
 	int minLeft, minRight;
 
-	if (t->data < min)
-		min = t->data;
-
 	if (t->left != NULL)
-		minLeft = minVal(t->left, min);
-	else
-		minLeft = min;
+		minLeft = minVal(t->left);
 
 	if (t->right != NULL)
-		minRight = minVal(t->right, min);
-	else
-		minRight = min;
+		minRight = minVal(t->right);
 
-	if (minLeft < minRight)
+	if (t->left == NULL)
+		return minRight;
+	else if (t->right == NULL)
 		return minLeft;
+	else {
+		if (minLeft < minRight)
+			return minLeft;
 
-	return minRight;
+		return minRight;
+	}
 }
 
-int maxVal(Tree *t, int max) {
+int maxVal(Tree *t) {
+
+	if (t->left == NULL && t->right == NULL)
+		return t->data;
+
 	int maxLeft, maxRight;
 
-	if (t->data > max)
-		max = t->data;
-
 	if (t->left != NULL)
-		maxLeft = minVal(t->left, max);
-	else
-		maxLeft = max;
+		maxLeft = maxVal(t->left);
 
 	if (t->right != NULL)
-		maxRight = minVal(t->right, max);
-	else
-		maxRight = max;
+		maxRight = maxVal(t->right);
 
-	if (maxLeft > maxRight)
+	if (t->left == NULL)
+		return maxRight;
+	else if (t->right == NULL)
 		return maxLeft;
+	else {
+		if (maxLeft < maxRight)
+			return maxLeft;
 
-	return maxRight;
+		return maxRight;
+	}
 }
 
 
 int isBinarySearchTree(Tree *t) {
-	if (minVal(t->left, t->data) < t->data && maxVal(t->right, t->data) > t->data)
+	int left, right;
+
+	if (t->left == NULL && t->right == NULL)
 		return 1;
 
-	return 0;
+	if (t->left != NULL) {
+		if (left = isBinarySearchTree(t->left), !left) return 0;
+		if (minVal(t->left) > t->data) return 0;
+	}
 
+	if (t->right != NULL) {
+		if (right = isBinarySearchTree(t->right), !right) return 0;
+		if (maxVal(t->right) < t->data) return 0;
+	}
+
+
+	return 1;
 }
 
 int main() {
@@ -130,7 +148,7 @@ int main() {
 		printf("\nNao eh arvore binaria de busca!\n");
 
 	// Modifica de forma que não seja mais uma arvore binaria de busca
-	tree->right->data = 0;
+	tree->left->data = 0;
 
 	printTree(tree);
 
