@@ -100,7 +100,7 @@ int min(Arvore *a) {
 
     printf("%d\n", a->info);
 
-    return 1;
+    return a->info;
 }
 
 int max(Arvore *a) {
@@ -112,7 +112,7 @@ int max(Arvore *a) {
 
     printf("%d\n", a->info);
 
-    return 1;
+    return a->info;
 }
 
 /*
