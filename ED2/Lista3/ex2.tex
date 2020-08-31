@@ -1,0 +1,302 @@
+% Remove A
+
+\begin{center}
+    \begin{tikzpicture}[
+       edge from parent path=
+    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
+                             .. (\tikzchildnode.north)},
+    level 1/.style={sibling distance=6cm},                        
+    level 2/.style={sibling distance=3cm},                         
+    level 3/.style={sibling distance=2cm},
+    level 4/.style={sibling distance=1cm},
+   every node/.style={draw,circle},
+   label distance=-1mm]
+   
+\node[label=90:$-1$] {Q}
+    child {node[label=90:$-1$] {M}
+        child {node[label=90:$1$] {E}
+            child {node[label=90:$0$] {B}}
+            child {node[label=90:$0$] {G}
+                child {node[label=90:$0$] {F}}
+                child {node[label=90:$0$] {H}}
+            }
+        }
+        child {node[label=90:$0$] {O}
+            child {node[label=90:$0$] {N}}
+            child {node[label=90:$0$] {P}}
+        }
+    }   
+    child {node[label=90:$0$] {W}
+        child {node[label=90:$0$] {S}
+            child {node[label=90:$0$] {R}}
+            child {node[label=90:$0$] {T}}
+            }
+        child {node[label=90:$0$] {Y}
+            child {node[label=90:$0$] {X}}
+            child {node[label=90:$0$] {Z}}
+            }
+    };
+
+\end{tikzpicture}
+\end{center}
+
+% Remove H
+
+\begin{center}
+    \begin{tikzpicture}[
+       edge from parent path=
+    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
+                             .. (\tikzchildnode.north)},
+    level 1/.style={sibling distance=6cm},                        
+    level 2/.style={sibling distance=3cm},                         
+    level 3/.style={sibling distance=2cm},
+    level 4/.style={sibling distance=1cm},
+   every node/.style={draw,circle},
+   label distance=-1mm]
+   
+\node[label=90:$-1$] {Q}
+    child {node[label=90:$-1$] {M}
+        child {node[label=90:$1$] {E}
+            child {node[label=90:$0$] {B}}
+            child {node[label=90:$-1$] {G}
+                child {node[label=90:$0$] {F}}
+                child[missing]{}
+            }
+        }
+        child {node[label=90:$0$] {O}
+            child {node[label=90:$0$] {N}}
+            child {node[label=90:$0$] {P}}
+        }
+    }   
+    child {node[label=90:$0$] {W}
+        child {node[label=90:$0$] {S}
+            child {node[label=90:$0$] {R}}
+            child {node[label=90:$0$] {T}}
+            }
+        child {node[label=90:$0$] {Y}
+            child {node[label=90:$0$] {X}}
+            child {node[label=90:$0$] {Z}}
+            }
+    };
+
+\end{tikzpicture}
+\end{center}
+
+% Remove E
+
+\begin{center}
+    \begin{tikzpicture}[
+       edge from parent path=
+    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
+                             .. (\tikzchildnode.north)},
+    level 1/.style={sibling distance=6cm},                        
+    level 2/.style={sibling distance=3cm},                         
+    level 3/.style={sibling distance=2cm},
+   every node/.style={draw,circle},
+   label distance=-1mm]
+   
+\node[label=90:$0$] {Q}
+    child {node[label=90:$0$] {M}
+        child {node[label=90:$0$] {F}
+            child {node[label=90:$0$] {B}}
+            child {node[label=90:$0$] {G}}
+        }
+        child {node[label=90:$0$] {O}
+            child {node[label=90:$0$] {N}}
+            child {node[label=90:$0$] {P}}
+        }
+    }   
+    child {node[label=90:$0$] {W}
+        child {node[label=90:$0$] {S}
+            child {node[label=90:$0$] {R}}
+            child {node[label=90:$0$] {T}}
+            }
+        child {node[label=90:$0$] {Y}
+            child {node[label=90:$0$] {X}}
+            child {node[label=90:$0$] {Z}}
+            }
+    };
+
+\end{tikzpicture}
+\end{center}
+
+% Remove W
+
+\begin{center}
+    \begin{tikzpicture}[
+       edge from parent path=
+    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
+                             .. (\tikzchildnode.north)},
+    level 1/.style={sibling distance=6cm},                        
+    level 2/.style={sibling distance=3cm},                         
+    level 3/.style={sibling distance=2cm},
+   every node/.style={draw,circle},
+   label distance=-1mm]
+   
+\node[label=90:$0$] {Q}
+    child {node[label=90:$0$] {M}
+        child {node[label=90:$0$] {F}
+            child {node[label=90:$0$] {B}}
+            child {node[label=90:$0$] {G}}
+        }
+        child {node[label=90:$0$] {O}
+            child {node[label=90:$0$] {N}}
+            child {node[label=90:$0$] {P}}
+        }
+    }   
+    child {node[label=90:$0$] {T}
+        child {node[label=90:$-1$] {S}
+            child {node[label=90:$0$] {R}}
+            child[missing]{}
+            }
+        child {node[label=90:$0$] {Y}
+            child {node[label=90:$0$] {X}}
+            child {node[label=90:$0$] {Z}}
+            }
+    };
+
+\end{tikzpicture}
+\end{center}
+
+% Remove G
+
+\begin{center}
+    \begin{tikzpicture}[
+       edge from parent path=
+    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
+                             .. (\tikzchildnode.north)},
+    level 1/.style={sibling distance=6cm},                        
+    level 2/.style={sibling distance=3cm},                         
+    level 3/.style={sibling distance=2cm},
+   every node/.style={draw,circle},
+   label distance=-1mm]
+   
+\node[label=90:$0$] {Q}
+    child {node[label=90:$0$] {M}
+        child {node[label=90:$-1$] {F}
+            child {node[label=90:$0$] {B}}
+            child[missing]{}
+        }
+        child {node[label=90:$0$] {O}
+            child {node[label=90:$0$] {N}}
+            child {node[label=90:$0$] {P}}
+        }
+    }   
+    child {node[label=90:$0$] {T}
+        child {node[label=90:$-1$] {S}
+            child {node[label=90:$0$] {R}}
+            child[missing]{}
+            }
+        child {node[label=90:$0$] {Y}
+            child {node[label=90:$0$] {X}}
+            child {node[label=90:$0$] {Z}}
+            }
+    };
+
+\end{tikzpicture}
+\end{center}
+
+% Remove N
+
+\begin{center}
+    \begin{tikzpicture}[
+       edge from parent path=
+    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
+                             .. (\tikzchildnode.north)},
+    level 1/.style={sibling distance=5cm},                        
+    level 2/.style={sibling distance=2cm},                         
+    level 3/.style={sibling distance=2cm},
+   every node/.style={draw,circle},
+   label distance=-1mm]
+   
+\node[label=90:$0$] {Q}
+    child {node[label=90:$0$] {M}
+        child {node[label=90:$-1$] {F}
+            child {node[label=90:$0$] {B}}
+            child[missing]{}
+        }
+        child {node[label=90:$1$] {O}
+            child[missing]{}
+            child {node[label=90:$0$] {P}}
+        }
+    }   
+    child {node[label=90:$0$] {T}
+        child {node[label=90:$-1$] {S}
+            child {node[label=90:$0$] {R}}
+            child[missing]{}
+            }
+        child {node[label=90:$0$] {Y}
+            child {node[label=90:$0$] {X}}
+            child {node[label=90:$0$] {Z}}
+            }
+    };
+
+\end{tikzpicture}
+\end{center}
+
+% Remove P
+
+\begin{center}
+    \begin{tikzpicture}[
+       edge from parent path=
+    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
+                             .. (\tikzchildnode.north)},
+    level 1/.style={sibling distance=5cm},                        
+    level 2/.style={sibling distance=2cm},                         
+    level 3/.style={sibling distance=2cm},
+   every node/.style={draw,circle},
+   label distance=-1mm]
+   
+\node[label=90:$0$] {Q}
+    child {node[label=90:$-1$] {M}
+        child {node[label=90:$-1$] {F}
+            child {node[label=90:$0$] {B}}
+            child[missing]{}
+        }
+        child {node[label=90:$0$] {O}}
+    }   
+    child {node[label=90:$0$] {T}
+        child {node[label=90:$-1$] {S}
+            child {node[label=90:$0$] {R}}
+            child[missing]{}
+            }
+        child {node[label=90:$0$] {Y}
+            child {node[label=90:$0$] {X}}
+            child {node[label=90:$0$] {Z}}
+            }
+    };
+
+\end{tikzpicture}
+\end{center}
+
+% Remove O
+
+\begin{center}
+    \begin{tikzpicture}[
+       edge from parent path=
+    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
+                             .. (\tikzchildnode.north)},
+    level 1/.style={sibling distance=5cm},                        
+    level 2/.style={sibling distance=2cm},                         
+    level 3/.style={sibling distance=2cm},
+   every node/.style={draw,circle},
+   label distance=-1mm]
+   
+\node[label=90:$0$] {Q}
+    child {node[label=90:$0$] {F}
+        child {node[label=90:$0$] {B}}
+        child {node[label=90:$0$] {M}}
+    }   
+    child {node[label=90:$0$] {T}
+        child {node[label=90:$-1$] {S}
+            child {node[label=90:$0$] {R}}
+            child[missing]{}
+            }
+        child {node[label=90:$0$] {Y}
+            child {node[label=90:$0$] {X}}
+            child {node[label=90:$0$] {Z}}
+            }
+    };
+
+\end{tikzpicture}
+\end{center}

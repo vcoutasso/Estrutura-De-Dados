@@ -1,0 +1,49 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[bottom=2cm, top=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{verbatim}
+\usepackage{tikz}
+
+\title{Lista - Árvores AVL}
+\author{Vinícius Couto Tasso}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tikzset{every tree node/.style={minimum width=2em,draw,circle},
+         blank/.style={draw=none},
+         edge from parent/.style=
+         {draw,edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}},
+         level distance=1cm}
+         
+\begin{enumerate}
+
+\item Insira as chaves abaixo, na ordem em que são mostradas, em uma árvore AVL inicialmente vazia. Mostre a árvore final (com o fator de balanceamento de cada nó) produzida por essas inserções:
+
+\begin{center}
+    \begin{verbatim}
+      Q, Z, B, Y, T, M, E, W, X, S, F, G, A, H, N, O, P, R.
+    \end{verbatim}
+\end{center}
+
+\input{ex1.tex}
+
+\item Mostre cada uma das árvores, assim como o fator de balanceamento de cada nó, após a remoção das chaves a seguir (considere as remoções sobre a árvore final do exercício):
+
+\begin{center}
+    \begin{verbatim}
+      A, H, E, W, G, N, P, O.
+    \end{verbatim}
+\end{center}
+
+\input{ex2.tex}
+
+\item Mostre a árvore final após a remoção do nó com chave 1.
+
+\input{ex3.tex}
+
+\end{enumerate}
+
+\end{document}
