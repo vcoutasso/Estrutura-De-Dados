@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[bottom=2cm, top=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{verbatim}
+\usepackage{tikz}
+
+\title{Lista - Árvores B}
+\author{Vinícius Couto Tasso}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tikzset{every tree node/.style={minimum width=2em,draw,circle},
+         blank/.style={draw=none},
+         edge from parent/.style=
+         {draw,edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}},
+         level distance=1cm}
+         
+\begin{enumerate}
+
+\item \textbf{Por que não permitimos um grau mínimo de $t = 1$ em uma árvore B?}
+
+Por definição, uma árvore B deve ter pelo menos $t - 1$ chaves (propriedade 5a) em todos seus nós diferentes da raiz. Com $t = 1$, seria permitido nós que não contém chave alguma e, consequentemente, nós com apenas 1 filho (o que não faz sentido para árvores binárias).
+
+\item \textbf{Para que valores de $t$ a árvore abaixo é uma árvore B válida?}
+
+A árvore é valida para $t = 2$ e $t = 3$.
+
+\item \textbf{Mostre todas as árvores B válidas de grau mínimo 2 que representam \{1,2,3,4,5\}.}
+
+\input{ex3.tex}
+
+\item \textbf{Mostre o resultado da inserção das chaves}
+
+\begin{verbatim}
+    F, S, Q, K, C, L, H, T, V, W, M, R, N, P, A, B, X, Y, D, Z, E
+\end{verbatim}
+\textbf{nessa ordem em uma árvore B vazia com grau mínimo 2. Desenhe apenas as configurações da árvore imediatamente antes de ter de dividir nó, e desenhe também a configuração final.}
+
+\input{ex4.tex}
+
+\end{enumerate}
+
+\end{document}

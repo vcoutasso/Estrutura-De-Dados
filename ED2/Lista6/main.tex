@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[bottom=2cm, top=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+\title{Lista - Árvores B}
+\author{Vinícius Couto Tasso}
+\date{}
+
+\begin{document}
+
+\maketitle
+         
+\begin{enumerate}
+
+\item \textbf{Considerando a árvore a seguir (o grau mínimo para essa árvore B é $t=3$), realize, nessa ordem, as seguintes operações: \texttt{RM(S); ADD(D); RM(E); ADD(M); RM(L); RM(X); ADD(F); RM(N); RM(J)}. Para cada remoção, identifique o caso no qual se enquadra.}
+
+\input{tree.tex}
+
+\texttt{RM(S)} $\rightarrow$ Caso 1
+
+\input{rm-s.tex}
+
+\texttt{RM(E)} $\rightarrow$ Caso 2A
+
+\input{rm-e.tex}
+
+\texttt{RM(L)} $\rightarrow$ Caso 2B
+
+\input{rm-l.tex}
+
+\texttt{RM(X)} $\rightarrow$ Caso 2C
+
+\input{rm-x.tex}
+
+\newpage
+
+\texttt{RM(N)} $\rightarrow$ Caso 3A
+
+\input{rm-n.tex}
+
+\texttt{RM(J)} $\rightarrow$ Caso 3B
+
+\input{rm-j.tex}
+
+\end{enumerate}
+
+\end{document}
