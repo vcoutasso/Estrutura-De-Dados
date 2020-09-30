@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[bottom=2cm, top=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{chains}
+
+\title{Lista 7}
+\author{Vinícius Couto Tasso}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tikzset{every tree node/.style={minimum width=2em,draw,circle},
+         blank/.style={draw=none},
+         edge from parent/.style=
+         {draw,edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}},
+         level distance=1cm}
+         
+\begin{enumerate}
+
+\setcounter{enumi}{1}
+
+\item \textbf{A sequência $\langle 23, 17, 14, 6, 13, 10, 1, 5, 7, 12 \rangle$ é um heap máximo?}
+
+Não, pois o nó de valor 7 é maior que seu pai, de valor 6.
+
+\item \textbf{Ilustre a operação \texttt{MAX-HEAPIFY(V,3)} sobre o arranjo $V = \langle 23, 17, 3, 16, 13, 10, 1, 5, 7, 12, 4, 8, 9, 0 \rangle$.}
+
+\input{ex3.tex}
+
+\newpage
+
+\item \textbf{Ilustre a operação \texttt{BUILD-MAX-HEAP} sobre o arranjo $V = \langle 5, 3, 17, 10, 84, 19, 6, 22, 9 \rangle$.}
+
+\input{ex4.tex}
+
+\item \textbf{Ilustre a operação \texttt{HEAP-SORT} sobre o arranjo $V = \langle 5, 13, 2, 25, 7, 17, 20, 8, 4 \rangle$.}
+
+\input{ex5.tex}
+
+\end{enumerate}
+
+\end{document}
