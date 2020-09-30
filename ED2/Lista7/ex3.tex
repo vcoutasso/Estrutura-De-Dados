@@ -1,15 +1,10 @@
 \begin{center}
-    \begin{tikzpicture}[
-       edge from parent path=
-    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
-                             .. (\tikzchildnode.north)},
-    level 1/.style={sibling distance=6cm}, 
-    level 2/.style={sibling distance=3cm},                        
-    level 3/.style={sibling distance=2cm},                         
-    level 4/.style={sibling distance=1cm},
-   every node/.style={draw, circle, fill=gray, fill opacity=0.1, text opacity=1},
-   label distance=-1mm]
-   
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
 \node[label=90:$1$] {23}
     child {node[label=90:$2$] {17}
         child {node[label=90:$4$] {16}
@@ -31,22 +26,15 @@
             child[missing] {}
         }
     };
-
 \end{tikzpicture}
 \end{center}
 
 \begin{center}
-    \begin{tikzpicture}[
-       edge from parent path=
-    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
-                             .. (\tikzchildnode.north)},
-    level 1/.style={sibling distance=6cm}, 
-    level 2/.style={sibling distance=3cm},                        
-    level 3/.style={sibling distance=2cm},                         
-    level 4/.style={sibling distance=1cm},
-   every node/.style={draw, circle, fill=gray, fill opacity=0.1, text opacity=1},
-   label distance=-1mm]
-   
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]   
 \node[label=90:$1$] {23}
     child {node[label=90:$2$] {17}
         child {node[label=90:$4$] {16}
@@ -73,17 +61,11 @@
 \end{center}
 
 \begin{center}
-    \begin{tikzpicture}[
-       edge from parent path=
-    {(\tikzparentnode.south) .. controls +(0,-.5) and +(0,.5)
-                             .. (\tikzchildnode.north)},
-    level 1/.style={sibling distance=6cm}, 
-    level 2/.style={sibling distance=3cm},                        
-    level 3/.style={sibling distance=2cm},                         
-    level 4/.style={sibling distance=1cm},
-   every node/.style={draw, circle, fill=gray, fill opacity=0.1, text opacity=1},
-   label distance=-1mm]
-   
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]   
 \node[label=90:$1$] {23}
     child {node[label=90:$2$] {17}
         child {node[label=90:$4$] {16}
