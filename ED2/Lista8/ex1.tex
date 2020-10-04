@@ -1,0 +1,296 @@
+\texttt{HEAP-EXTRACT-MAX:}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$, fill=black, fill opacity=0.4] {15}
+    child {node[label=90:$2$] {13}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$] {12}
+            child {node[label=90:$10$] {6}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$] {9}
+        child {node[label=90:$6$] {8}    
+            child {node[label=90:$12$, fill=black, fill opacity=0.2] {1}}
+            child[missing] {}
+        }
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$, fill=black, fill opacity=0.2] {1}
+    child {node[label=90:$2$] {13}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$] {12}
+            child {node[label=90:$10$] {6}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$] {9}
+        child {node[label=90:$6$] {8}}
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$] {13}
+    child {node[label=90:$2$, fill=black, fill opacity=0.2] {1}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$] {12}
+            child {node[label=90:$10$] {6}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$] {9}
+        child {node[label=90:$6$] {8}}
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$] {13}
+    child {node[label=90:$2$] {12}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$, fill=black, fill opacity=0.2] {1}
+            child {node[label=90:$10$] {6}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$] {9}
+        child {node[label=90:$6$] {8}}
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$] {13}
+    child {node[label=90:$2$] {12}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$] {6}
+            child {node[label=90:$10$, fill=black, fill opacity=0.2] {1}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$] {9}
+        child {node[label=90:$6$] {8}}
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$] {13}
+    child {node[label=90:$2$] {12}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$] {6}
+            child {node[label=90:$10$] {1}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$] {9}
+        child {node[label=90:$6$] {8}}
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\texttt{MAX-HEAP-INSERT(V,size,10):}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$] {15}
+    child {node[label=90:$2$] {13}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$] {12}
+            child {node[label=90:$10$] {6}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$] {9}
+        child {node[label=90:$6$] {8}    
+            child {node[label=90:$12$] {1}}
+            child[missing] {}
+        }
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$] {15}
+    child {node[label=90:$2$] {13}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$] {12}
+            child {node[label=90:$10$] {6}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$] {9}
+        child {node[label=90:$6$] {8}    
+            child {node[label=90:$12$] {1}}
+            child {node[label=90:$13$, fill=black, fill opacity=0.4] {10}}
+        }
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$] {15}
+    child {node[label=90:$2$] {13}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$] {12}
+            child {node[label=90:$10$] {6}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$] {9}
+        child {node[label=90:$6$, fill=black, fill opacity=0.4] {10}    
+            child {node[label=90:$12$] {1}}
+            child {node[label=90:$13$] {8}}
+        }
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$] {15}
+    child {node[label=90:$2$] {13}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$] {12}
+            child {node[label=90:$10$] {6}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$, fill=black, fill opacity=0.4] {10}
+        child {node[label=90:$6$] {9}    
+            child {node[label=90:$12$] {1}}
+            child {node[label=90:$13$] {8}}
+        }
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+   \tikzstyle{level 1}=[sibling distance=6cm]
+   \tikzstyle{level 2}=[sibling distance=3cm]
+   \tikzstyle{level 3}=[sibling distance=2cm]
+   \tikzstyle{every node}=[draw, circle, fill=gray, fill opacity=0.1, text opacity=1, minimum size=2em]
+
+\node[label=90:$1$] {15}
+    child {node[label=90:$2$] {13}
+        child {node[label=90:$4$] {5}
+            child {node[label=90:$8$] {4}}
+            child {node[label=90:$9$] {0}}
+        }
+        child {node[label=90:$5$] {12}
+            child {node[label=90:$10$] {6}}
+            child {node[label=90:$11$] {2}}
+            }
+    }
+    child {node[label=90:$3$] {10}
+        child {node[label=90:$6$] {9}    
+            child {node[label=90:$12$] {1}}
+            child {node[label=90:$13$] {8}}
+        }
+        child {node[label=90:$7$] {7}}
+    };
+\end{tikzpicture}
+\end{center}

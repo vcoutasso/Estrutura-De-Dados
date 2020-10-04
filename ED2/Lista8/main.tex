@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[bottom=2cm, top=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{chains}
+
+\title{Lista 8 - Filas de Prioridades}
+\author{Vinícius Couto Tasso}
+\date{}
+
+\begin{document}
+
+\maketitle
+   
+\tikzset{every tree node/.style={minimum size=2em,draw,circle},
+         blank/.style={draw=none},
+         edge from parent/.style=
+         {draw,edge from parent path={(\tikzparentnode) -- (\tikzchildnode)}},
+         level distance=1cm}
+         
+\begin{enumerate}
+
+\item \textbf{Ilustre as operações \texttt{HEAP-EXTRACT-MAX} e \texttt{MAX-HEAP-INSERT(V,size,10)}, de forma independente, sobre o heap $V = \langle 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1 \rangle$ (mostre uma árvore para cada operação).}
+
+\input{ex1.tex}
+
+
+\end{enumerate}
+
+\end{document}
