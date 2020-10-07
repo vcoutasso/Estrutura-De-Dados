@@ -57,7 +57,7 @@ int parent(int idx) {
 
 void heapDecreaseKey(int V[], int idx, int key) {
     if (key > V[idx]) {
-        printf("Error: Expected key lesser than %d, got %d.\n", V[idx], key);
+        printf("Error: Expected key less than %d, got %d.\n", V[idx], key);
         return;
     }
 
