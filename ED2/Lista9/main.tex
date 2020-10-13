@@ -1,0 +1,34 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[bottom=2cm, top=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\title{Lista 9 - Tabelas Hash
+}
+\author{Vinícius Couto Tasso}
+\date{}
+
+\begin{document}
+
+\maketitle
+         
+\begin{enumerate}
+
+\item Faça no papel a inserção das chaves 5, 28, 19, 15, 20, 33, 12, 17 e 10 em uma tabela hash com colisões resolvidas por encadeamento. Seja a tabela com 9 posições,  seja a função hash $h(k) = k\ \text{mod}\ M$.
+
+\input{ex1.tex}
+
+\item Faça no papel a inserção das chaves 10, 22, 31, 4, 15, 28, 17, 88, 59 em uma tabela hash de comprimento $m = 11$ usando o endereçamento aberto com a função hash primário $h^\prime(k)=k\ \text{mod}\ m$. Ilustre o resultado destas inserções com a sondagem linear, com a sondagem quadrática com $c_1 = 1$ e $c_2 = 3$, e com a utilização do hash duplo com $h_2(k) = 1 + (k\ \text{mod}\ (m - 1))$. Indique o número total de colisões para cada técnica.
+
+\input{ex2_linear.tex}
+
+\input{ex2_quadratica.tex}
+
+\input{ex2_hash_duplo.tex}
+
+\end{enumerate}
+
+\end{document}
