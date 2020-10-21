@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[bottom=2cm, top=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\title{Lista 10 - DFS}
+\author{Vinícius Couto Tasso}
+\date{}
+
+\begin{document}
+
+\maketitle
+         
+\begin{enumerate}
+
+\item Considere a execução da busca em profundidade (DFS) começando pelo vértice A. Assuma que as listas de adjacências estão em ordem lexográfica/alfabética, ou seja, ao explorar o vértice E, considere E-D antes de E-G ou E-H. Complete a lista de vértices da ordem de descoberta do DFS.
+
+\begin{verbatim}
+    A-B 
+    B-C 
+    C-E 
+    E-D 
+    D-G
+    D-H
+    H-G
+    E-G
+    E-H
+    C-F
+    F-E
+    F-H
+    F-I
+    I-E
+    I-H
+    B-D
+    B-E
+    B-F
+    A-D
+    A-E
+\end{verbatim}
+
+\end{enumerate}
+
+\end{document}
